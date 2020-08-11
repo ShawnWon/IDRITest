@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="idri.js"></script>
+<link rel="stylesheet" href="idri.css">
+
+
+
+<title>IDRI Test</title>
+</head>
+
+<body onload="init()">
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+		</div>
+		<div class="col-md-6">
+        <heder>
+          <img src="header.png" alt="header" align="right"/>
+          <br/>
+          <img src="logo.png" alt="logo"/>
+        </header>
+        <div id = "pgMainMenu" class="customDiv">
+
+		          <h1 align="center">Welcome!</h1>
+            	<img src="cover.png" alt="cover"/>
+            	<br/>
+              <p><button id="bStartQuiz" name="startQuiz" onclick="startAnalysis()" label="Start" class="w3-btn w3-green">Enter</button></p>
+        </div>
+
+        <div id = "pgBasicInfo" class="customDiv">
+            <h3>Basic Info</h3>
+            <p>
+              <lable>Age:</label>
+              <input id="agebox" type="text" onchange="validateAgeInput()">
+              <div id="ageIncorrect" style="display:none"><label class="warningmessage">Age input is invalid.</div>
+            </p>
+            <p>
+              <lable>Gender:</label>
+              <input type="radio" name="gender" value="Male" onclick="hideFemaleOption()"><label><span id = "Male">Male</span></label>
+              <input type="radio" name="gender" value="Female" onclick="displayFemaleOption()"><label><span id = "Female">Female</span></label>
+              <div id="genderIncorrect" style="display:none"><label class="warningmessage">Please input your gender.</div>
+            </p>
+
+            <div id="femaleOptions" style="display:none">
+              <p>
+                <lable>Are you pregnant?</label>
+                <input type="radio" name="pregnant" value="Yes"><label><span id = "pregYes">Yes</span></label>
+                <input type="radio" name="pregnant" value="No"><label><span id = "pregNo">No</span></label>
+                <div id="pregIncorrect" style="display:none"><label class="warningmessage">Please input pregnant status.</div>
+              </p>
+            </div>
+            <p><button onclick="checkBasicInfo()" class="w3-btn w3-green">Submit</button></p>
+
+            <div id="basicinfoWarning" style="display:none" class="warningBoard">
+              <p>YOU ARE IN THE HIGH RISK GROUP OF SUFFERING FROM IRON DEFICIENCY</p>
+            </div>
+            <div id="basicinfoMessage" style="display:none" class="safeBoard">
+              <p>YOU ARE NOT IN THE HIGH RISK GROUP</p>
+            </div>
+
+            <div id="basicNextButton" style="display:none">
+              <p><button onclick="gotoSymtons()" class="w3-btn w3-green">Next</button></p>
+            </div>
+        </div>
+
+        <div id = "pgSymptons" class="customDiv" display="none">
+            <h3>Symptoms</h3>
+            <p>Please tick your suffer from any of the following symptoms:</p>
+            <div class="checkboxDiv">
+            <p><input id="OptAnswer1" type="checkbox" name="symptoms" value="1"><label><span>Constant fatigue</span></label></p>
+
+            <p><input id="OptAnswer2" type="checkbox" name="symptoms" value="2"><label><span>Difficulty in learning</span></label></p>
+
+            <p><input id="OptAnswer3" type="checkbox" name="symptoms" value="3"><label><span>Poor Immune system and often sick</span></label></p>
+
+            <p><input id="OptAnswer4" type="checkbox" name="symptoms" value="4"><label><span>Stunted growth</span></label></p>
+
+            <p><input id="OptAnswer5" type="checkbox" name="symptoms" value="5"><label><span>Can't concentrate</span></label></p>
+
+            <p><input id="OptAnswer6" type="checkbox" name="symptoms" value="6"><label><span>Dizzy spells</span></label></p>
+
+            <p><input id="OptAnswer7" type="checkbox" name="symptoms" value="7"><label><span>Pale eyes and tongue</span></label></p>
+
+            <p><input id="OptAnswer8" type="checkbox" name="symptoms" value="8"><label><span>Brittle hairs and nails</span></label></p>
+
+            <p><input id="OptAnswer9" type="checkbox" name="symptoms" value="9"><label><span>Anemia(lack of blood)</span></label></p>
+          </div>
+
+            <p><button onclick="checkSymptoms()" class="w3-btn w3-green">Submit</button></p>
+
+
+            <div id="symptoninfoMessage" style="display:none" class="safeBoard">
+              <p>You are healthy but keep your intake of iron regular.</p>
+            </div>
+            <div id="symptoninfoWarning" style="display:none" class="warningBoard">
+              <p>You have an iron deficiency.</p>
+            </div>
+            <div id="symptoninfoSevere" style="display:none" class="warningBoard">
+              <p>You may have severe iron deficiency.</p>
+            </div>
+
+            <div id="symptomNextButton" style="display:none">
+              <p><button onclick="gotoDiet()" class="w3-btn w3-green">Next</button></p>
+            </div>
+
+        </div>
+
+        <div id = "pgDiet" class="customDiv" display="none">
+          <h3>Diet</h3>
+          <p>Which of the following food did you this week:</p>
+          <div class="checkboxDiv">
+          <p><input id="OptDiet1" type="checkbox" name="diets" value="1"><label><span>Red meat such as beef, mutton, liver</span></label></p>
+
+          <p><input id="OptDiet2" type="checkbox" name="diets" value="2"><label><span>Green vegetable such as radish, spinach</span></label></p>
+
+          <p><input id="OptDiet3" type="checkbox" name="diets" value="3"><label><span>High in Vitamin C -rich fruits such as orange, strawberry, grape, lime</span></label></p>
+
+          <p><input id="OptDiet4" type="checkbox" name="diets" value="4"><label><span>Beverages such as coffee and tea</span></label></p>
+
+        </div>
+            <p><button id="bSubmitAnswer" onclick="checkDiet()" class="w3-btn w3-green">Submit</button>
+            </p>
+            <div id="dietInfo1" style="display:none" class="warningBoard">
+              <p>Excessive consumption of coffee and tea will lead to iron deficiency.</p>
+            </div>
+            <div id="dietInfo2" style="display:none" class="warningBoard">
+              <p>Lack of Red Meat, Green Vegetables in your diet will lead to iron deficiency.</p>
+            </div>
+            <div id="dietInfo3" style="display:none" class="warningBoard">
+              <p>Lack of Vitamin C hampers the absorption of iron leading to a deficiency.</p>
+            </div>
+            <div id="dietInfo4" style="display:none" class="safeBoard">
+              <p>Red meat and green vegetables are a good source of Iron while Vitamin C aids the absorption of iron. Keep it up.</p>
+            </div>
+            <div id="dietInfo5" style="display:none" class="safeBoard">
+              <p>Red meat and green vegetables are a good source of Iron but you should increase intake of Vitamin C rich fruits to aid the absorption of iron.</p>
+            </div>
+            <div id="dietInfo6" style="display:none" class="safeBoard">
+              <p>Vitamin C helps with absorption of iron. Please increase your intake of red meat and green vegetables.</p>
+            </div>
+            <div id="gotoResultButton" style="display:none">
+              <p><button onclick="gotoResults()" class="w3-btn w3-green">Next</button></p>
+            </div>
+        </div>
+
+        <div id="pgResults" class="customDiv" display="none">
+            <h3><span>Analysis Results</span></h3>
+            <div id="ResultSummary" class="reportDiv">Report</div>
+            <p><button onclick="resetForm()" class="w3-btn w3-green"> Main Menu </button></p>
+        </div>
+
+</div>
+<div class="col-md-3">
+		</div>
+</div>
+</div>
+
+    </body>
+</html>
