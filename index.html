@@ -18,20 +18,21 @@
 </head>
 
 <body onload="init()">
-  <header>
-    <img src="header.png" alt="header" align="right"/>
-    <br/>
-    <img src="logo.png" alt="logo"/>
-  </header>
-<div class="w3-row-padding w3-center w3-margin-top">
+
+<div class="container">
 	<div class="row">
-		
-		<div class="w3-col w3-center">
-        
+		<div class="col-1">
+		</div>
+		<div class="col-10">
+        <header>
+          <img src="header.png" alt="header" align="right"/>
+          <br/>
+          <img src="logo.png" alt="logo"/>
+        </header>
         <div id = "pgMainMenu" class="customDiv">
 
 		          <h1 align="center">Welcome!</h1>
-            	<img src="cover.png" alt="cover"/>
+            	<img src="cover.png" alt="cover" class = "img-responsive" width = "80%"/>
             	<br/>
               <p><button id="bStartQuiz" name="startQuiz" onclick="startAnalysis()" label="Start" class="w3-btn w3-green">Enter</button></p>
         </div>
@@ -159,6 +160,8 @@
         </div>
 
 </div>
+<div class="col-1">
+		</div>
 </div>
 </div>
 
